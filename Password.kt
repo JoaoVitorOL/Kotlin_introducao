@@ -7,6 +7,7 @@ fun main() {
         Requisito("Deve conter o ano do Hexa (2026)") { it.contains("2026") },
         Requisito("Deve conter pelo menos uma letra maiúscula") {it.any{char -> char.isUpperCase() }},
         Requisito("Deve conter pelo menos um número") {it.any{char -> char.isDigit() }},
+        Requisito("Não pode ter uma soma de caracteres divisível por 2") { it.length % 2 != 0 },
         Requisito("Deve conter a palavra 'satc' (case insensitive)") {
             it.contains("satc", ignoreCase = true)
         },
