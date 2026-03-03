@@ -64,6 +64,10 @@ println("abc")      // built-in
 
 # 1. O que são Extension Functions
 
+[Kotlin Doc](https://kotlinlang.org/docs/extensions.html#extension-functions)
+
+[Extension video](https://youtu.be/8kMT-H6ck2U?si=RKsuaAr9eNF7q9vm)
+
 **Extension functions** são funções declaradas fora de uma classe, mas que podem ser chamadas **como se fossem métodos dessa classe**.
 
 Definição técnica precisa:
