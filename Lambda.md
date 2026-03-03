@@ -59,3 +59,115 @@ Funções lambda  **não são** ideais quando:
 * Há necessidade de testes unitários isolados.
 
  > Se você precisa comentar uma lambda para explicá-la, ela já deveria ser uma função normal.
+
+---
+
+## 5. Diferença entre Lambda e função tradicional
+
+
+### 5.1 Função tradicional
+
+Características:
+
+* Possui nome.
+* Pode ter múltiplas linhas.
+* Pode conter controle de fluxo complexo.
+* Facilmente reutilizável.
+* Mais adequada para regras de negócio.
+
+Exemplo conceitual:
+````text
+função calcularDesconto(valor):
+    se valor > 100:
+        retornar valor * 0.9
+    senão:
+        retornar valor
+``````
+
+### 5.2 Função Lambda
+Características:
+
+* Anônima.
+* Normalmente uma única expressão.
+* Criada no ponto de uso.
+* Menos verbosa.
+* Ideal para operações locais.
+
+Exemplo conceitual:
+````text
+(valor) -> valor > 100 ? valor * 0.9 : valor
+``````
+
+----
+
+
+## Interpretação de uma função Lambda
+
+
+## Cenário
+Você está desenvolvendo um **backend** que processa pedidos de compra.
+Cada pedido possui:
+- valor total
+- status
+- cliente
+
+Você precisa:
+- filtrar pedidos válidos
+- calcular valor com desconto
+- gerar uma lista final pronta para persistência ou resposta de API
+
+---
+
+## 1. Modelo de dados (contexto)
+
+```kotlin
+data class Pedido(
+    val id: Long,
+    val valor: Double,
+    val status: Status
+)
+
+enum class Status {
+    CRIADO,
+    PAGO,
+    CANCELADO
+}
+````
+Regra de negócio:
+
+* considerar apenas pedidos com status PAGO
+* aplicar 10% de desconto se o valor > 500
+* gerar uma lista de valores finais
+  
+````kotlin
+val pedidosPagosComDesconto =
+    pedidos
+        .filter { it.status == Status.PAGO }
+        .map { pedido ->
+            if (pedido.valor > 500)
+                pedido.valor * 0.9
+            else
+                pedido.valor
+        }
+````
+
+### filter { it.status == Status.PAGO }
+* filter espera uma função: (Pedido) -> Boolean
+* it representa cada Pedido da lista
+* Retorna true apenas para pedidos pagos
+
+  Forma explícita equivalente:
+````kotlin
+.filter { pedido: Pedido -> pedido.status == Status.PAGO }
+````
+
+### map { pedido -> ... }
+map espera uma função: (Pedido) -> Double
+pedido (it) foi nomeado:
+* porque a lógica é maior
+* melhora legibilidade
+* A última expressão é o retorno
+
+ ## 5. O que o it representa neste contexto
+> “o elemento atual da coleção” <br>
+> Nest caso it = Pedido atual da iteração <br>
