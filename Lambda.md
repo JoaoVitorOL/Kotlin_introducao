@@ -1,5 +1,9 @@
 # 👅 Funções Lambda na Programação
 
+[Doc Kotlin](https://kotlinlang.org/docs/lambdas.html)
+
+[Video lambdas](https://youtu.be/7FFusJuFlgo?si=3SWpabhzo1NAzqp3)
+
 
 ## 1. O que são funções Lambda
 
