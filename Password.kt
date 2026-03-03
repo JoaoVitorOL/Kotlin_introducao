@@ -8,6 +8,9 @@ fun main() {
         Requisito("Deve conter pelo menos uma letra maiúscula") {it.any{char -> char.isUpperCase() }},
         Requisito("Deve conter pelo menos um número") {it.any{char -> char.isDigit() }},
         Requisito("Não pode ter uma soma de caracteres divisível por 2") { it.length % 2 != 0 },
+        Requisito("Deve conter número ímpar de vogais") { val vogais = "aeiouAEIOU"
+            val quantidadeVogais = it.count { char -> char in vogais }
+            quantidadeVogais % 2 != 0 },
         Requisito("Deve conter a palavra 'satc' (case insensitive)") {
             it.contains("satc", ignoreCase = true)
         },
@@ -20,11 +23,7 @@ fun main() {
         Requisito("Deve conter conter a palavra VALORANT ou COUNTERSTRIKE escrita ao contrário") { var palavra = "VALORANT"
             var palavra2 = "COUNTERSTRIKE"
 
-            it.contains(palavra.reversed()) or it.contains(palavra2.reversed())  }
-
-
-
-    )
+            it.contains(palavra.reversed()) or it.contains(palavra2.reversed())  })
 
     var senhaAprovada = false
 
