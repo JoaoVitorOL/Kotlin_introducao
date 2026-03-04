@@ -125,6 +125,7 @@ lastOrNull
 count
 groupBy
 associate
+rverse
 ````
 5.2 Strings
 ````text
